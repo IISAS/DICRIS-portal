@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dicris</title>
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Dicris</h1>
+    <table>
+        <caption>Status of individual Models of Dicris platform</caption>
+        <tr>
+            <th>Model name</th>
+            <th>Model status</th>
+            <th>Last change</th>
+        </tr>
+        {% for model in models %}
+            <tr>
+                <td>{{ model.name }}</td>
+                {% if model.status == "bad" %}
+                    <td bgcolor= "red">{{ model.status }}</td>
+                {% elif model.status == "warning" %}
+                    <td bgcolor= "orange">{{ model.status }}</td>
+                {% elif model.status == "undefined" %}
+                    <td bgcolor= "gray">{{ model.status }}</td>
+                {% else %}
+                    <td bgcolor= "green">{{ model.status }}</td>
+                {% endif %}
+                <td>{{ model.time }}</td>
+            </tr>
+        {% endfor %}
+    </table> 
+</body>
+</html>

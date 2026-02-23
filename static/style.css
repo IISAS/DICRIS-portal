@@ -1,0 +1,13 @@
+body {
+    height: 100vh;
+    /*display: flex;
+    justify-content: center;
+    align-items: center;*/
+    font-size: 40px;
+    font-family: monospace;
+}
+table, th, td {
+    font-size: 40px;
+    border:1px solid black;
+    border-collapse: collapse;
+}
