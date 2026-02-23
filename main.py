@@ -18,8 +18,9 @@ templates = Jinja2Templates(directory="templates")
 
 class StatusEnum(str, Enum):
     undefined = 'undefined'
+    moderate = 'moderate'
     warning = 'warning'
-    bad = 'bad'
+    critical = 'critical'
     ok = 'ok'
 
 

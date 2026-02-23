@@ -16,9 +16,11 @@
         {% for model in models %}
             <tr>
                 <td>{{ model.name }}</td>
-                {% if model.status == "bad" %}
+                {% if model.status == "critical" %}
                     <td bgcolor= "red">{{ model.status }}</td>
                 {% elif model.status == "warning" %}
+                    <td bgcolor= "tomato">{{ model.status }}</td>
+                {% elif model.status == "moderate" %}
                     <td bgcolor= "orange">{{ model.status }}</td>
                 {% elif model.status == "undefined" %}
                     <td bgcolor= "gray">{{ model.status }}</td>
