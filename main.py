@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import FileResponse
 
 from enum import Enum
 from pydantic import BaseModel
@@ -48,6 +49,12 @@ models = [
     DicrisModel(name = 'Model 5', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(name = 'Model 6', status = StatusEnum.undefined, time = datetime.now()),
 ]
+
+favicon_path = '/images/favicon.ico'
+
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse(favicon_path)
 
 
 @app.get("/models")
