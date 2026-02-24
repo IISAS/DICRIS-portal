@@ -31,7 +31,7 @@
                 {% else %}
                     <td bgcolor= "green">{{ model.status }}</td>
                 {% endif %}
-                <td>{{ model.time.strftime('%H:%m %d-%m-%Y') }}</td>
+                <td>{{ model.time.strftime('%H:%M:%S %d.%m.%Y') }}</td>
             </tr>
         {% endfor %}
     </table> 
