@@ -1,13 +1,27 @@
-body {
+/*body {
     height: 100vh;
-    /*display: flex;
-    justify-content: center;
-    align-items: center;*/
-    font-size: 40px;
+    display: flex;
+    font-size: 10px;
     font-family: monospace;
+}*/
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #555;
+}
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+body {
+  font-family: "Helvetica", Sans-Serif;
+  font-size: 20px;
+  /*background-image: url("../images/background-image.jpeg");*/
 }
 table, th, td {
-    font-size: 40px;
+    font-size: 50px;
     border:1px solid black;
     border-collapse: collapse;
 }
