@@ -4,21 +4,29 @@
     font-size: 10px;
     font-family: monospace;
 }*/
-.header img {
-  float: left;
-  width: 100px;
-  height: 100px;
-  background: #555;
+/*.header img {
+    float: left; 
+    width: 100px;
+    height: 100px;
+    background: #555;
 }
 .header h1 {
-  position: relative;
-  top: 18px;
-  left: 10px;
+    position: relative;
+    top: 18px;
+    left: 10px;
+}*/
+img {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+h1 {
+    text-align:center;
 }
 body {
-  font-family: "Helvetica", Sans-Serif;
-  font-size: 20px;
-  /*background-image: url("../images/background-image.jpeg");*/
+    font-family: "Helvetica", Sans-Serif;
+    font-size: 20px;
+    /*background-image: url("../images/background-image.jpeg");*/
 }
 table, th, td {
     font-size: 30px;

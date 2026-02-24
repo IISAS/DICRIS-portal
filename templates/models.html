@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Dicris</title>
-</head>
-<body>
-    <link href="/static/style.css" rel="stylesheet">
-    <div class="header">
-        <img src="/images/logo.png" alt="DICRIS Logo" style="width:10%;height:10%;">
+    <head>
+        <title>Dicris</title>
+    </head>
+    <body>
+        <link href="/static/style.css" rel="stylesheet">
+        <a href="https://dicris.sk"><img src="/images/logo.png" alt="DICRIS Logo" style="width:10%;height:10%;"></a>
         <h1>Dicris - Digitálne technológie pre kritické infraštruktúry</h1>
-    </div>
-    <br>
-    <table>
-        <caption>Status of individual Models of Dicris platform</caption>
-        <tr>
-            <th>Model name</th>
-            <th>Model status</th>
-            <th>Last change</th>
-        </tr>
-        {% for model in models %}
+        <br>
+        <table>
+            <caption>Status of individual Models of Dicris platform</caption>
             <tr>
-                <td>{{ model.name }}</td>
-                {% if model.status == "critical" %}
-                    <td bgcolor= "red">{{ model.status }}</td>
-                {% elif model.status == "warning" %}
-                    <td bgcolor= "tomato">{{ model.status }}</td>
-                {% elif model.status == "moderate" %}
-                    <td bgcolor= "orange">{{ model.status }}</td>
-                {% elif model.status == "undefined" %}
-                    <td bgcolor= "gray">{{ model.status }}</td>
-                {% else %}
-                    <td bgcolor= "green">{{ model.status }}</td>
-                {% endif %}
-                <td>{{ model.time.strftime('%H:%M:%S %d.%m.%Y') }}</td>
+                <th>Model name</th>
+                <th>Model status</th>
+                <th>Last change</th>
             </tr>
-        {% endfor %}
-    </table> 
-</body>
+            {% for model in models %}
+                <tr>
+                    <td>{{ model.name }}</td>
+                    {% if model.status == "critical" %}
+                        <td bgcolor= "red">{{ model.status }}</td>
+                    {% elif model.status == "warning" %}
+                        <td bgcolor= "tomato">{{ model.status }}</td>
+                    {% elif model.status == "moderate" %}
+                        <td bgcolor= "orange">{{ model.status }}</td>
+                    {% elif model.status == "undefined" %}
+                        <td bgcolor= "gray">{{ model.status }}</td>
+                    {% else %}
+                        <td bgcolor= "green">{{ model.status }}</td>
+                    {% endif %}
+                    <td>{{ model.time.strftime('%H:%M:%S %d.%m.%Y') }}</td>
+                </tr>
+            {% endfor %}
+        </table> 
+    </body>
 </html>
