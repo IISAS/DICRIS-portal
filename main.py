@@ -50,17 +50,20 @@ favicon_path = '/images/favicon.ico'
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     model = DicrisModel(name='', status=StatusEnum.undefined, time=datetime.now())
-    with open("models.bin", 'rb') as f:
-        try:
-            while True:
-                model = pickle.load(f)
-                for idx, m in enumerate(models):
-                    if model.name == m.name:
-                        models[idx] = model
-                        break
-        except EOFError:
-            f.close()
-            pass
+    try:
+        with open("models.bin", 'rb') as f:
+            try:
+                while True:
+                    model = pickle.load(f)
+                    for idx, m in enumerate(models):
+                        if model.name == m.name:
+                            models[idx] = model
+                            break
+            except EOFError:
+                f.close()
+                pass
+    except IOError:
+        pass
     #app.state.models = models
     yield
 
