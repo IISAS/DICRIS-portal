@@ -7,6 +7,8 @@ from enum import Enum
 from pydantic import BaseModel
 from datetime import datetime
 
+import uvicorn
+
 
 app = FastAPI()
 
@@ -85,3 +87,6 @@ async def home(request: Request):
     return templates.TemplateResponse(
         request=request, name="models.html", context=context
     )
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, ssl_keyfile="/etc/dehydrated/certs/dicris.sk/privkey.pem", ssl_certfile="/etc/dehydrated/certs/dicris.sk/cert.pem")
