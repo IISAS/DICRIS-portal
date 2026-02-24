@@ -89,4 +89,4 @@ async def home(request: Request):
     )
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, ssl_keyfile="/etc/dehydrated/certs/dicris.sk/privkey.pem", ssl_certfile="/etc/dehydrated/certs/dicris.sk/cert.pem")
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, ssl_keyfile="/etc/ssl/harica/dicris.sk.key", ssl_certfile="/etc/ssl/harica/dicris.sk.pem")
