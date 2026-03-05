@@ -23,6 +23,7 @@ class StatusEnum(str, Enum):
 
 
 class DicrisModel(BaseModel):
+    id: int
     name: str
     status: StatusEnum
     time: datetime
@@ -36,20 +37,22 @@ class ModelStatus(BaseModel):
     class Config:  
         use_enum_values = True
 
+
+models_history=[[], [], [], [], [], [],]
 models = [
-    DicrisModel(name = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(name = 'Model 2', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(name = 'Model 3', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(name = 'Model 4', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(name = 'Model 5', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(name = 'Model 6', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=1, name = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=2, name = 'Model 2', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=3, name = 'Model 3', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=4, name = 'Model 4', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=5, name = 'Model 5', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=6, name = 'Model 6', status = StatusEnum.undefined, time = datetime.now()),
 ]
-favicon_path = '/images/favicon.ico'
+favicon_path = 'images/favicon.ico'
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    model = DicrisModel(name='', status=StatusEnum.undefined, time=datetime.now())
+    model = DicrisModel(id=0, name='', status=StatusEnum.undefined, time=datetime.now())
     try:
         with open("models.bin", 'rb') as f:
             try:
@@ -57,6 +60,8 @@ async def lifespan(app: FastAPI):
                     model = pickle.load(f)
                     for idx, m in enumerate(models):
                         if model.name == m.name:
+                            m_temp = models_history[model.id - 1]
+                            m_temp.append(model.copy())
                             models[idx] = model
                             break
             except EOFError:
@@ -95,7 +100,7 @@ async def get_model(name:str):
 
 @app.post("/models", status_code=201)
 async def add_status_model(model_status: ModelStatus):
-    model = DicrisModel(name='', status=StatusEnum.undefined, time=datetime.now())
+    model = DicrisModel(id=0, name='', status=StatusEnum.undefined, time=datetime.now())
     #models = app.state.models
     for idx, m in enumerate(models):
         if model_status.name == m.name:
@@ -103,6 +108,8 @@ async def add_status_model(model_status: ModelStatus):
             m.time = datetime.now()
             models[idx] = m
             model = m
+            m_temp = models_history[model.id - 1]
+            m_temp.append(model.copy())
             pickle.dump(m, open("models.bin", "ab+"))
             break
     if model.name =='':
@@ -118,6 +125,72 @@ async def home(request: Request):
     }
     return templates.TemplateResponse(
         request=request, name="models.html", context=context
+    )
+
+
+@app.get("/Fire.html", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "Fire",
+        "models": models_history[0],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Model 2.html", response_class=HTMLResponse)
+async def model2(request: Request):
+    context = {
+        "name": "Model 2",
+        "models": models_history[1],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Model 3.html", response_class=HTMLResponse)
+async def model3(request: Request):
+    context = {
+        "name": "Model 3",
+        "models": models_history[2],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Model 4.html", response_class=HTMLResponse)
+async def model4(request: Request):
+    context = {
+        "name": "Model 4",
+        "models": models_history[3],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Model 5.html", response_class=HTMLResponse)
+async def model5(request: Request):
+    context = {
+        "name": "Model 5",
+        "models": models_history[4],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Model 6.html", response_class=HTMLResponse)
+async def model6(request: Request):
+    context = {
+        "name": "Model 6",
+        "models": models_history[5],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
     )
 
 
