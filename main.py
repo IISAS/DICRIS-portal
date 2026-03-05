@@ -37,7 +37,7 @@ class ModelStatus(BaseModel):
         use_enum_values = True
 
 models = [
-    DicrisModel(name = 'Model 1', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(name = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(name = 'Model 2', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(name = 'Model 3', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(name = 'Model 4', status = StatusEnum.undefined, time = datetime.now()),
