@@ -41,8 +41,8 @@ class ModelStatus(BaseModel):
 models_history=[[], [], [], [], [], [],]
 models = [
     DicrisModel(id=1, name = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=2, name = 'Model 2', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=3, name = 'Model 3', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=2, name = 'Insulator', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=3, name = 'Voiceprocessing', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(id=4, name = 'Model 4', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(id=5, name = 'Model 5', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(id=6, name = 'Model 6', status = StatusEnum.undefined, time = datetime.now()),
