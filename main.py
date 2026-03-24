@@ -139,10 +139,10 @@ async def fire(request: Request):
     )
 
 
-@app.get("/Model 2.html", response_class=HTMLResponse)
+@app.get("/Insulator.html", response_class=HTMLResponse)
 async def model2(request: Request):
     context = {
-        "name": "Model 2",
+        "name": "Insulator",
         "models": models_history[1],
     }
     return templates.TemplateResponse(
@@ -150,10 +150,10 @@ async def model2(request: Request):
     )
 
 
-@app.get("/Model 3.html", response_class=HTMLResponse)
+@app.get("/Voiceprocessing.html", response_class=HTMLResponse)
 async def model3(request: Request):
     context = {
-        "name": "Model 3",
+        "name": "Voiceprocessing",
         "models": models_history[2],
     }
     return templates.TemplateResponse(
