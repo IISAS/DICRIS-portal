@@ -23,7 +23,7 @@
             </tr>
             {% for model in models %}
                 <tr>
-                    <td><a href="{{ model.name }}.html">{{ model.name }}</a></td>
+                    <td><a href="{{ model.link }}.html">{{ model.name }}</a></td>
                     {% if model.status == "critical" %}
                         <td bgcolor= "red">{{ model.status }}</td>
                     {% elif model.status == "warning" %}

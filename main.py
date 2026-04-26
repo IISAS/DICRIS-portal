@@ -25,6 +25,7 @@ class StatusEnum(str, Enum):
 class DicrisModel(BaseModel):
     id: int
     name: str
+    link: str
     status: StatusEnum
     time: datetime
     class Config:  
@@ -38,21 +39,29 @@ class ModelStatus(BaseModel):
         use_enum_values = True
 
 
-models_history=[[], [], [], [], [], [],]
 models = [
-    DicrisModel(id=1, name = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=2, name = 'Insulator', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=3, name = 'Voiceprocessing', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=4, name = 'Model 4', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=5, name = 'Model 5', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=6, name = 'Model 6', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=1, name = 'D1_Insulator-Condition-Monitor', link = 'Insulator', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=2, name = 'D2_Woodland-Species-Classificator', link = 'Woodland', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=3, name = 'D3_RIS-Query', link = 'RIS', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=4, name = 'D4_PMU-Anomaly-Predictor', link = 'PMU', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=5, name = 'D5_Vegetation-VisClass', link = 'Vegetation', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=6, name = 'D6_Fire-Predictor', link = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=7, name = 'D7_PointCloud-Classifier', link = 'PointCloud', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=8, name = 'D8_ConDistFL', link = 'ConDistFL', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=9, name = 'D9_Annomally-Detection', link = 'Annomally', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=10, name = 'D10_Voice-Processing', link = 'Voice', status = StatusEnum.undefined, time = datetime.now()),
 ]
+
+models_history=[]
+for i in models:
+    models_history = models_history + [[]]
+
 favicon_path = 'images/favicon.ico'
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    model = DicrisModel(id=0, name='', status=StatusEnum.undefined, time=datetime.now())
+    model = DicrisModel(id=0, name='', link='', status=StatusEnum.undefined, time=datetime.now())
     try:
         with open("models.bin", 'rb') as f:
             try:
@@ -100,7 +109,7 @@ async def get_model(name:str):
 
 @app.post("/models", status_code=201)
 async def add_status_model(model_status: ModelStatus):
-    model = DicrisModel(id=0, name='', status=StatusEnum.undefined, time=datetime.now())
+    model = DicrisModel(id=0, name='', link='', status=StatusEnum.undefined, time=datetime.now())
     #models = app.state.models
     for idx, m in enumerate(models):
         if model_status.name == m.name:
@@ -128,10 +137,10 @@ async def home(request: Request):
     )
 
 
-@app.get("/Fire.html", response_class=HTMLResponse)
-async def fire(request: Request):
+@app.get("/Insulator.html", response_class=HTMLResponse)
+async def insulator(request: Request):
     context = {
-        "name": "Fire",
+        "name": "D1_Insulator-Condition-Monitor",
         "models": models_history[0],
     }
     return templates.TemplateResponse(
@@ -139,10 +148,10 @@ async def fire(request: Request):
     )
 
 
-@app.get("/Insulator.html", response_class=HTMLResponse)
-async def model2(request: Request):
+@app.get("/Woodland.html", response_class=HTMLResponse)
+async def fire(request: Request):
     context = {
-        "name": "Insulator",
+        "name": "D2_Woodland-Species-Classificator",
         "models": models_history[1],
     }
     return templates.TemplateResponse(
@@ -150,11 +159,88 @@ async def model2(request: Request):
     )
 
 
-@app.get("/Voiceprocessing.html", response_class=HTMLResponse)
-async def model3(request: Request):
+@app.get("/RIS.html", response_class=HTMLResponse)
+async def fire(request: Request):
     context = {
-        "name": "Voiceprocessing",
+        "name": "D3_RIS-Query",
         "models": models_history[2],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/PMU.html", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "D4_PMU-Anomaly-Predictor",
+        "models": models_history[3],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Vegetation", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "D5_Vegetation-VisClass",
+        "models": models_history[4],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Fire.html", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "D6_Fire-Predictor",
+        "models": models_history[5],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/PointCloud", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "D7_PointCloud-Classifier",
+        "models": models_history[6],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/ConDistFL", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "D8_ConDistFL",
+        "models": models_history[7],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+
+@app.get("/Annomally", response_class=HTMLResponse)
+async def fire(request: Request):
+    context = {
+        "name": "D9_Annomally-Detection",
+        "models": models_history[8],
+    }
+    return templates.TemplateResponse(
+        request=request, name="model.html", context=context
+    )
+
+    
+@app.get("/Voice.html", response_class=HTMLResponse)
+async def voice(request: Request):
+    context = {
+        "name": "D10_Voice-Processing",
+        "models": models_history[9],
     }
     return templates.TemplateResponse(
         request=request, name="model.html", context=context
@@ -196,4 +282,4 @@ async def model6(request: Request):
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, ssl_keyfile="/etc/ssl/harica/dicris.sk.key", ssl_certfile="/etc/ssl/harica/dicris.sk.pem")
-    #uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    # uvicorn.run("main:app", host="0.0.0.0", port=8000)
