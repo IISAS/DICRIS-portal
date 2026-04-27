@@ -225,10 +225,10 @@ async def fire(request: Request):
     )
 
 
-@app.get("/Annomally", response_class=HTMLResponse)
+@app.get("/Anomaly", response_class=HTMLResponse)
 async def fire(request: Request):
     context = {
-        "name": "D9_Annomally-Detection",
+        "name": "D9_Anomaly-Detection",
         "models": models_history[8],
     }
     return templates.TemplateResponse(
