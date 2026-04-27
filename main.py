@@ -48,7 +48,7 @@ models = [
     DicrisModel(id=6, name = 'D6_Fire-Predictor', link = 'Fire', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(id=7, name = 'D7_PointCloud-Classifier', link = 'PointCloud', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(id=8, name = 'D8_ConDistFL', link = 'ConDistFL', status = StatusEnum.undefined, time = datetime.now()),
-    DicrisModel(id=9, name = 'D9_Annomally-Detection', link = 'Annomally', status = StatusEnum.undefined, time = datetime.now()),
+    DicrisModel(id=9, name = 'D9_Anomaly-Detection', link = 'Anomaly', status = StatusEnum.undefined, time = datetime.now()),
     DicrisModel(id=10, name = 'D10_Voice-Processing', link = 'Voice', status = StatusEnum.undefined, time = datetime.now()),
 ]
 
